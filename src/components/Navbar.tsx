@@ -9,7 +9,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   return (
     <nav className="relative z-10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-center px-8 py-6 md:justify-between">
         {/* Logotipo */}
         <a href="#" className="flex items-center" aria-label="Way Coffee">
           <img
@@ -34,10 +34,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Botão CTA */}
+        {/* Botão CTA — oculto no mobile */}
         <a
           href="#contato"
-          className="rounded-full px-6 py-2.5 text-sm text-white transition-transform duration-200 hover:scale-[1.03]"
+          className="hidden rounded-full px-6 py-2.5 text-sm text-white transition-transform duration-200 hover:scale-[1.03] md:inline-block"
           style={{ backgroundColor: '#1F1611' }}
         >
           Comece a Jornada
