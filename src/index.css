@@ -9,10 +9,18 @@
   color-scheme: light;
 }
 
-html,
-body,
+html {
+  scroll-behavior: smooth;
+}
+
 #root {
-  height: 100%;
+  min-height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

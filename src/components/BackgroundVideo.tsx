@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Vídeo de fundo com loop manual e transições de fade suaves.
+ * Vídeo de fundo da hero (Higgsfield AI — grãos verdes → torrados) com loop
+ * manual e transições de fade suaves.
  *
  * - requestAnimationFrame monitora continuamente currentTime / duration
  * - fade-in nos primeiros 0,5s (opacidade 0 → 1)
  * - fade-out nos últimos 0,5s (opacidade 1 → 0)
  * - no evento `ended`: opacidade 0 → aguarda 100ms → currentTime = 0 → play()
  *
- * Coloque o arquivo em /public/video/cafe.mp4 (substitua pelo seu vídeo).
+ * Arquivo em /public/video/cafe.mp4.
  */
 const FADE_DURATION = 0.5 // segundos
 
@@ -20,31 +21,23 @@ export default function BackgroundVideo() {
     const video = videoRef.current
     if (!video) return
 
-    // Autoplay exige mudo em navegadores modernos.
     video.muted = true
 
     const tick = () => {
       const { currentTime, duration } = video
-
       if (duration && !Number.isNaN(duration)) {
         let opacity = 1
-
         if (currentTime < FADE_DURATION) {
-          // fade-in
           opacity = currentTime / FADE_DURATION
         } else if (currentTime > duration - FADE_DURATION) {
-          // fade-out
           opacity = Math.max(0, (duration - currentTime) / FADE_DURATION)
         }
-
         video.style.opacity = String(opacity)
       }
-
       rafRef.current = requestAnimationFrame(tick)
     }
 
     const handleEnded = () => {
-      // Garante que começamos escondidos antes do reinício.
       video.style.opacity = '0'
       window.setTimeout(() => {
         video.currentTime = 0
@@ -60,8 +53,6 @@ export default function BackgroundVideo() {
 
     video.addEventListener('ended', handleEnded)
     video.addEventListener('loadedmetadata', startPlayback)
-
-    // Se os metadados já carregaram antes do listener anexar.
     if (video.readyState >= 1) startPlayback()
 
     rafRef.current = requestAnimationFrame(tick)
@@ -78,7 +69,7 @@ export default function BackgroundVideo() {
       className="pointer-events-none absolute z-0"
       style={{ top: '300px', inset: 'auto 0 0 0' }}
     >
-      <div className="relative">
+      <div className="relative h-[60vh] w-full">
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
