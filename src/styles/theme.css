@@ -653,44 +653,7 @@ select.form-field option {
   flex-shrink: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-rise,
-  .animate-fade-rise-delay,
-  .animate-fade-rise-delay-2,
-  .reveal {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
-  .nav-link::after,
-  .social-btn,
-  .origin-card,
-  .partner-monogram,
-  .diff-ring,
-  .diff-label,
-  .diff-arrow {
-    transition: none !important;
-  }
-  .diff-row::before,
-  .diff-row::after {
-    transition: none !important;
-    transform: scaleX(1) !important;
-  }
-  .split-word-inner {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
-  .marquee-content {
-    animation: none !important;
-  }
-  .quote-draw::before {
-    transition: none !important;
-    transform: scaleY(1) !important;
-  }
-  .perfil-card {
-    transition: none !important;
-  }
-}
+/* Animações tocam em todos os dispositivos (paridade mobile = desktop),
+   inclusive com "reduzir movimento" ativo — a pedido do proprietário.
+   A visibilidade do conteúdo é garantida pelo IntersectionObserver
+   (e pelo fallback do componente Reveal quando IO não existe). */

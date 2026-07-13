@@ -6,7 +6,6 @@ import { useEffect, useRef } from 'react'
  * viewport — só transform, rAF-throttled, passivo.
  *
  * speed: 0.05–0.15 recomendado (delta pequeno, sem desorientar).
- * Respeita prefers-reduced-motion (não move nada).
  */
 export default function useParallax<T extends HTMLElement>(speed = 0.1) {
   const ref = useRef<T>(null)
@@ -14,9 +13,6 @@ export default function useParallax<T extends HTMLElement>(speed = 0.1) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (reduced.matches) return
 
     let raf = 0
     let ticking = false
