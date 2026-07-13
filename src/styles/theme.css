@@ -96,8 +96,9 @@
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  padding-bottom: 0.08em; /* respiro para descendentes (g, p, ç) */
-  margin-bottom: -0.08em;
+  /* respiro generoso para descendentes do itálico serifado (g, p, ç) e topo */
+  padding: 0.12em 0.04em 0.32em;
+  margin: -0.12em -0.04em -0.32em;
 }
 .split-word-inner {
   display: inline-block;
