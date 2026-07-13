@@ -1,6 +1,8 @@
 import SplitWords from './SplitWords'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Hero() {
+  const { t } = useLang()
   return (
     <main className="relative z-10">
       <section
@@ -19,13 +21,8 @@ export default function Hero() {
           <SplitWords
             baseDelay={150}
             step={90}
-            segments={[
-              { text: 'Da ' },
-              { text: 'origem', em: true, color: '#8B5A2B' },
-              { text: ' ao ' },
-              { text: 'seu destino', em: true, color: '#8B5A2B' },
-              { text: '.' },
-            ]}
+            emColor="#8B5A2B"
+            segments={t.hero.title}
           />
         </h1>
 
@@ -34,8 +31,7 @@ export default function Hero() {
           className="animate-fade-rise-delay mt-8 max-w-2xl text-base leading-relaxed sm:text-lg"
           style={{ color: '#8B5A2B' }}
         >
-          Exportação e importação de cafés verdes especiais, conectando
-          produtores brasileiros aos melhores compradores do mundo.
+          {t.hero.description}
         </p>
 
         {/* Botão CTA principal */}
@@ -44,7 +40,7 @@ export default function Hero() {
           className="animate-fade-rise-delay-2 mt-12 rounded-full px-14 py-5 text-base text-white transition-transform duration-200 hover:scale-[1.03]"
           style={{ backgroundColor: '#1F1611', color: '#FFFFFF' }}
         >
-          Comece a jornada
+          {t.hero.cta}
         </a>
       </section>
     </main>

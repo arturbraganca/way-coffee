@@ -13,6 +13,8 @@ type SplitWordsProps = {
   baseDelay?: number
   /** Intervalo (ms) entre palavras. */
   step?: number
+  /** Cor aplicada aos segmentos com `em` (a menos que o segmento traga a sua). */
+  emColor?: string
 }
 
 /**
@@ -27,6 +29,7 @@ export default function SplitWords({
   segments,
   baseDelay = 0,
   step = 55,
+  emColor,
 }: SplitWordsProps) {
   const fullText = segments.map((s) => s.text).join('')
   let wordIndex = 0
@@ -56,7 +59,13 @@ export default function SplitWords({
               className="split-word"
             >
               {seg.em ? (
-                <em style={seg.color ? { color: seg.color } : undefined}>
+                <em
+                  style={
+                    seg.color || emColor
+                      ? { color: seg.color ?? emColor }
+                      : undefined
+                  }
+                >
                   {inner}
                 </em>
               ) : (

@@ -1,8 +1,10 @@
 import Reveal from '../Reveal'
 import SplitWords from '../SplitWords'
 import useParallax from '../../hooks/useParallax'
+import { useLang } from '../../i18n/LanguageContext'
 
 export default function CaminhoDoCafe() {
+  const { t } = useLang()
   const bgRef = useParallax<HTMLDivElement>(0.08)
   return (
     <section
@@ -30,7 +32,7 @@ export default function CaminhoDoCafe() {
       <div className="relative mx-auto max-w-4xl px-6 py-28 md:py-40">
         <Reveal>
           <span className="eyebrow" style={{ color: '#D9A66C' }}>
-            Histórias que ligam o Brasil à Europa
+            {t.caminho.eyebrow}
           </span>
         </Reveal>
 
@@ -39,13 +41,7 @@ export default function CaminhoDoCafe() {
             className="mt-6 font-serif text-4xl font-normal text-cream sm:text-6xl md:text-7xl"
             style={{ lineHeight: 0.98, letterSpacing: '-0.025em' }}
           >
-            <SplitWords
-              segments={[
-                { text: 'O caminho do ' },
-                { text: 'café', em: true, color: '#D9A66C' },
-                { text: '.' },
-              ]}
-            />
+            <SplitWords emColor="#D9A66C" segments={t.caminho.title} />
           </h2>
         </Reveal>
 
@@ -55,10 +51,7 @@ export default function CaminhoDoCafe() {
               className="text-lg leading-relaxed"
               style={{ color: 'rgba(245,239,230,0.8)' }}
             >
-              Nas montanhas de Minas Gerais e nas terras altas do Espírito
-              Santo, onde o nascer do sol ilumina os cafezais e o aroma do café
-              faz parte da vida cotidiana, nasce uma história de união,
-              dedicação e confiança.
+              {t.caminho.p1}
             </p>
           </Reveal>
           <Reveal delay={2}>
@@ -66,9 +59,7 @@ export default function CaminhoDoCafe() {
               className="text-lg leading-relaxed"
               style={{ color: 'rgba(245,239,230,0.8)' }}
             >
-              Cada colheita, cada grão e cada safra ajudam a construir uma ponte
-              entre produtores brasileiros e torrefações europeias — uma cadeia
-              curta, direta e rastreável, do campo à chávena.
+              {t.caminho.p2}
             </p>
           </Reveal>
         </div>
@@ -80,13 +71,11 @@ export default function CaminhoDoCafe() {
               className="font-serif text-3xl italic sm:text-4xl md:text-5xl"
               style={{ color: '#F5EFE6', lineHeight: 1.15 }}
             >
-              Cada café tem uma origem.
+              {t.caminho.quote[0]}
               <br />
-              Cada origem tem uma história.
+              {t.caminho.quote[1]}
               <br />
-              <span style={{ color: '#D9A66C' }}>
-                E cada história merece ser partilhada.
-              </span>
+              <span style={{ color: '#D9A66C' }}>{t.caminho.quote[2]}</span>
             </p>
           </blockquote>
         </Reveal>

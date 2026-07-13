@@ -1,14 +1,7 @@
 import Reveal from './Reveal'
+import { useLang } from '../i18n/LanguageContext'
 
-const NAV_LINKS = [
-  { label: 'Início', href: '#' },
-  { label: 'O caminho do café', href: '#historia' },
-  { label: 'Regiões de origem', href: '#origens' },
-  { label: 'Nossos parceiros', href: '#parceiros' },
-  { label: 'Perfis de café', href: '#perfis' },
-  { label: 'Diferenciais', href: '#diferenciais' },
-  { label: 'Contato', href: '#contato' },
-]
+const NAV_HREFS = ['#', '#historia', '#origens', '#parceiros', '#perfis', '#diferenciais', '#contato']
 
 const WHATSAPP_DISPLAY = '+351 912 213 457'
 const WHATSAPP_URL = 'https://wa.me/351912213457'
@@ -60,6 +53,7 @@ function InstagramIcon() {
 }
 
 export default function Footer() {
+  const { t } = useLang()
   const year = new Date().getFullYear()
 
   return (
@@ -80,15 +74,13 @@ export default function Footer() {
               className="mt-6 max-w-sm leading-relaxed"
               style={{ color: 'rgba(245,239,230,0.6)' }}
             >
-              Exportação de cafés verdes especiais do Brasil para o mercado
-              europeu — uma cadeia curta, direta e rastreável, do campo à
-              chávena.
+              {t.footer.tagline}
             </p>
             <p
               className="mt-6 text-sm"
               style={{ color: 'rgba(245,239,230,0.4)' }}
             >
-              Brasil&nbsp;&nbsp;⇄&nbsp;&nbsp;Europa
+              {t.footer.axis}
             </p>
           </Reveal>
 
@@ -98,13 +90,13 @@ export default function Footer() {
               className="text-sm font-semibold uppercase"
               style={{ color: '#D9A66C', letterSpacing: '0.18em' }}
             >
-              Navegação
+              {t.footer.navHeading}
             </h3>
             <ul className="mt-5 space-y-3">
-              {NAV_LINKS.map((l) => (
-                <li key={l.label}>
-                  <a href={l.href} className="footer-link text-sm">
-                    {l.label}
+              {t.footer.navLinks.map((label, i) => (
+                <li key={i}>
+                  <a href={NAV_HREFS[i]} className="footer-link text-sm">
+                    {label}
                   </a>
                 </li>
               ))}
@@ -117,7 +109,7 @@ export default function Footer() {
               className="text-sm font-semibold uppercase"
               style={{ color: '#D9A66C', letterSpacing: '0.18em' }}
             >
-              Contato
+              {t.footer.contactHeading}
             </h3>
             <div className="mt-5 flex flex-col items-start gap-3">
               <a
@@ -158,10 +150,10 @@ export default function Footer() {
           style={{ borderColor: 'rgba(245,239,230,0.1)' }}
         >
           <p style={{ color: 'rgba(245,239,230,0.45)' }}>
-            © {year} Way Coffee. Todos os direitos reservados.
+            © {year} Way Coffee. {t.footer.rights}
           </p>
           <p style={{ color: 'rgba(245,239,230,0.45)' }}>
-            Cafés verdes especiais · Origem rastreável
+            {t.footer.bottomTagline}
           </p>
         </div>
       </div>
