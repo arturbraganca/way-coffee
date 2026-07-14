@@ -7,7 +7,7 @@ export default function Hero() {
     <main className="relative z-10">
       <section
         className="flex flex-col items-center justify-center px-6 pb-40 text-center"
-        style={{ paddingTop: 'calc(8rem - 75px)' }}
+        style={{ paddingTop: '9rem' }}
       >
         {/* Título */}
         <h1

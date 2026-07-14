@@ -13,10 +13,12 @@ import Marquee from './components/Marquee'
 export default function App() {
   return (
     <div className="w-full bg-background">
+      {/* Header fixo (encolhe ao rolar) */}
+      <Navbar />
+
       {/* Hero em tela cheia (vídeo de fundo recortado a esta seção) */}
       <section className="relative min-h-screen w-full overflow-hidden bg-background">
         <BackgroundVideo />
-        <Navbar />
         <Hero />
       </section>
 

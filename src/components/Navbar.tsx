@@ -1,8 +1,17 @@
+import { useEffect, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
   const { t } = useLang()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const items = [
     { label: t.nav.inicio, href: '#', active: true },
@@ -13,14 +22,32 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="relative z-50">
-      <div className="relative mx-auto flex max-w-7xl items-center justify-center px-8 py-6 md:justify-between">
-        {/* Logotipo */}
+    <nav
+      className="fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300"
+      style={
+        scrolled
+          ? {
+              backgroundColor: 'rgba(245, 239, 230, 0.88)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              boxShadow: '0 6px 24px rgba(31, 22, 17, 0.08)',
+            }
+          : undefined
+      }
+    >
+      <div
+        className={`relative mx-auto flex max-w-7xl items-center justify-center px-8 transition-all duration-300 md:justify-between ${
+          scrolled ? 'py-3' : 'py-6'
+        }`}
+      >
+        {/* Logotipo — encolhe ao rolar */}
         <a href="#" className="flex items-center" aria-label="Way Coffee">
           <img
             src="/logo-waycoffee.png"
             alt="Way Coffee"
-            className="h-9 w-auto md:h-10"
+            className={`w-auto transition-all duration-300 ${
+              scrolled ? 'h-7 md:h-8' : 'h-9 md:h-10'
+            }`}
           />
         </a>
 
@@ -45,7 +72,9 @@ export default function Navbar() {
           <LanguageSwitcher tone="dark" />
           <a
             href="#contato"
-            className="hidden rounded-full px-6 py-2.5 text-sm text-white transition-transform duration-200 hover:scale-[1.03] md:inline-block"
+            className={`hidden rounded-full text-sm text-white transition-all duration-300 hover:scale-[1.03] md:inline-block ${
+              scrolled ? 'px-5 py-2' : 'px-6 py-2.5'
+            }`}
             style={{ backgroundColor: '#1F1611' }}
           >
             {t.nav.cta}
