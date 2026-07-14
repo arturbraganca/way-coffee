@@ -21,16 +21,19 @@ export default function LanguageSwitcher({
 
   useEffect(() => {
     if (!open) return
-    const onClick = (e: MouseEvent) => {
+    // Usa 'click' (não 'mousedown'): assim a seleção da opção — que também é um
+    // 'click' — dispara normalmente, sem o menu ser fechado no mousedown antes
+    // do clique completar.
+    const onDocClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
     }
-    document.addEventListener('mousedown', onClick)
+    document.addEventListener('click', onDocClick)
     document.addEventListener('keydown', onKey)
     return () => {
-      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('click', onDocClick)
       document.removeEventListener('keydown', onKey)
     }
   }, [open])

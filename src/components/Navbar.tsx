@@ -13,7 +13,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="relative z-10">
+    <nav className="relative z-50">
       <div className="relative mx-auto flex max-w-7xl items-center justify-center px-8 py-6 md:justify-between">
         {/* Logotipo */}
         <a href="#" className="flex items-center" aria-label="Way Coffee">
